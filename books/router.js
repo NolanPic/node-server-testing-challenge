@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Books = require('./model');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try{
         const books = await Books.get();
         res.status(200).json(books);
@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const book = await Books.getById(id);
@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
     }
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const book = req.body;
     try {
         const createdBook = await Books.create(book);
@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
     }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const updates = req.body;
     try {
@@ -49,7 +49,7 @@ router.put('/:id', (req, res) => {
     }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         await Books.remove(id);
