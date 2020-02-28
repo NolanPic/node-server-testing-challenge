@@ -15,6 +15,18 @@ module.exports = {
     },
   },
 
+  testing: {
+    client: 'pg',
+    connection: 'postgres://localhost/ls-books_testing',
+    migrations: {
+      directory: './data/migrations',
+    },
+    pool: {
+      min: 2,
+      max: 10,
+    },
+  },
+
   production: {
     client: 'pg',
     connection: process.env.DATABASE_URL,
