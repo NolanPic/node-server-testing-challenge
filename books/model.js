@@ -19,7 +19,9 @@ async function getById(id) {
 }
 
 async function create(book) {
-    const [id] = await db('books').insert(book);
+    const [id] = await db('books')
+        .insert(book)
+        .returning('id');
     return getById(id);
 }
 
